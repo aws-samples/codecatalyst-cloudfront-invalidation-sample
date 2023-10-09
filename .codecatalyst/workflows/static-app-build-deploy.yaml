@@ -19,15 +19,10 @@ Actions:
         - Name: build_artifacts
           Files:
             - "build/*"
-      AutoDiscoverReports:
-        Enabled: true
-        ReportNamePrefix: rpt
     Configuration:
       Steps:
         - Run: npm install
         - Run: npm run build
-        - Run: ls
-        - Run: pwd
   
   PublishToS3Bucket:
     Identifier: aws/s3-publish@v1.0.5
@@ -43,6 +38,6 @@ Actions:
       Type: EC2
     Configuration:
       DestinationBucketName: 'gstarkma-react-codecatalyst'
-      SourcePath: /artifacts/PublishToS3Bucket/build/
+      SourcePath: build/
     DependsOn:
       - BuildAndTest
