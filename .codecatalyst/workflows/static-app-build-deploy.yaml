@@ -33,7 +33,7 @@ Actions:
       Connections:
         - Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
           Name: gstarkma
-      Name: static_app_demo_env
+      Name: testenvironment
     Inputs:
       Artifacts:
         - build_artifacts
