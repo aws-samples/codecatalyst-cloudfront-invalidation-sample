@@ -1,0 +1,46 @@
+Name: static-app-build-deploy
+SchemaVersion: "1.0"
+
+# Optional - Set automatic triggers.
+Triggers:
+  - Type: Push
+    Branches:
+      - main
+
+# Required - Define action configurations.
+Actions:
+  BuildAndTest:
+    Identifier: aws/build@v1.0.0
+    Inputs:
+      Sources:
+        - WorkflowSource
+    Outputs:
+      Artifacts:
+        - Name: build_artifacts
+          Files:
+            - "build/*"
+      AutoDiscoverReports:
+        Enabled: true
+        ReportNamePrefix: rpt
+    Configuration:
+      Steps:
+        - Run: npm install
+        - Run: npm run build
+  
+  PublishToS3Bucket:
+    Identifier: aws/s3-publish@v1.0.5
+    Environment:
+      Connections:
+        - Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
+          Name: gstarkma
+      Name: static_app_demo_env
+    Inputs:
+      Artifacts:
+        - build_artifacts
+    Compute:
+      Type: EC2
+    Configuration:
+      DestinationBucketName: '<bucket-name>'
+      SourcePath: /artifacts/PublishToS3Bucket/build/
+    DependsOn:
+      - BuildAndTest
