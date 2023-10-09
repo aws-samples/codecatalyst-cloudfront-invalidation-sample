@@ -40,7 +40,7 @@ Actions:
     Compute:
       Type: EC2
     Configuration:
-      DestinationBucketName: '<bucket-name>'
+      DestinationBucketName: 'gstarkma-react-codecatalyst'
       SourcePath: /artifacts/PublishToS3Bucket/build/
     DependsOn:
       - BuildAndTest
