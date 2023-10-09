@@ -26,6 +26,8 @@ Actions:
       Steps:
         - Run: npm install
         - Run: npm run build
+        - Run: ls
+        - Run: pwd
   
   PublishToS3Bucket:
     Identifier: aws/s3-publish@v1.0.5
