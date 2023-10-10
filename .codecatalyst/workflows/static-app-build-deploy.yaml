@@ -14,32 +14,32 @@ Actions:
     Inputs:
       Sources:
         - WorkflowSource
-    Outputs:
-      Artifacts:
-        - Name: build_artifacts
-          Files:
-            - "build/*"
     Configuration:
       Steps:
         - Run: npm install
         - Run: npm run build
-        - Run: ls build
-        - Run: pwd
-  
+    Outputs:
+      Artifacts:
+        - Name: build_artifacts
+          Files:
+            - "build/**/*"
   PublishToS3Bucket:
     Identifier: aws/s3-publish@v1.0.5
     Environment:
+      Name: testenvironment
       Connections:
         - Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
           Name: Personal
-      Name: testenvironment
+      
     Inputs:
+      Sources:
+        - WorkflowSource
       Artifacts:
         - build_artifacts
     Compute:
       Type: EC2
     Configuration:
-      DestinationBucketName: 'gstarkma-react-bucket'
-      SourcePath: build
+      DestinationBucketName: gstarkma-react-bucket
+      SourcePath: /artifacts/PublishToS3Bucket/build_artifacts/build
     DependsOn:
       - BuildAndTest
