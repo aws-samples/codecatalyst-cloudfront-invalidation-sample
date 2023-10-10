@@ -20,6 +20,7 @@ Actions:
         - Run: npm run build
     Outputs:
       Artifacts:
+        # Name of the Artifacts ... later to be used
         - Name: BuildArtifacts
           Files:
             - "build/**/*"
@@ -33,17 +34,20 @@ Actions:
       Connections:
           # The "Amazon CodeCatalyst display name" of the connection created in Space settings > AWS Accounts
         - Name: DevelopmentConnection
-          # The "IAM role name" 
-          Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
+          # The "IAM role name" set in Space settings > AWS Accounts > Display Name
+          Role: CodeCatalystWorkflowDevelopmentRole
     Inputs:
       Sources:
         - WorkflowSource
       Artifacts:
-        - build_artifacts
+        # Name of the Artifacts ... later to be used
+        - BuildArtifacts
     Compute:
       Type: EC2
     Configuration:
+      # Name of the S3 bucket created in an AWS Account
       DestinationBucketName: gstarkma-react-bucket
+      # This is where the S3 action will pull content from for uploading
       SourcePath: /artifacts/PublishToS3Bucket/BuildArtifacts/build
     DependsOn:
       - BuildAndTest
@@ -51,15 +55,12 @@ Actions:
     # Invalidates the CloudFront cache after changes to the S3 bucket content. 
     # It ensures that CloudFront delivers the updated content from S3 to users.
   InvalidateAmazonCloudFrontCache:
-    # Identifies the action. Do not modify this value.
     Identifier: codecatalyst-labs/invalidate-cloudfront-cache@v0.0.1
-
-    # Required; You can use an environment, AWS account connection, and role to access AWS resources.
     Environment:
-      Name: testenvironment
+      Name: DevelopmentEnvironment
       Connections:
-        - Name: Personal
-          Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
+        - Name: DevelopmentConnection
+          Role: CodeCatalystWorkflowDevelopmentRole
     Configuration:
       ObjectPaths: /*
       DistributionId: E2EIXKXRR7GJR6
