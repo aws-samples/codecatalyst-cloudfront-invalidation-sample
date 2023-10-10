@@ -20,7 +20,7 @@ Actions:
         - Run: npm run build
     Outputs:
       Artifacts:
-        # Name of the Artifacts ... later to be used
+        # Name of the Artifacts to be used in SourcePath 
         - Name: BuildArtifacts
           Files:
             - "build/**/*"
@@ -40,7 +40,7 @@ Actions:
       Sources:
         - WorkflowSource
       Artifacts:
-        # Name of the Artifacts ... later to be used
+        # Name of the Artifacts to be used in SourcePath
         - BuildArtifacts
     Configuration:
       # Name of the S3 bucket created in an AWS Account
