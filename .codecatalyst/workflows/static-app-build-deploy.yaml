@@ -29,7 +29,7 @@ Actions:
     Environment:
       Connections:
         - Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
-          Name: gstarkma
+          Name: Personal
       Name: testenvironment
     Inputs:
       Artifacts:
