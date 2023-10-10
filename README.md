@@ -1,6 +1,6 @@
 # CI/CD Deployment using the CodeCatalyst Invalidate Cloudfront Cache action  
 This is a sample create-react-app project that is equipped with a CI/CD workflow 
-that automates the build, deployment to an S3 bucket, and invalidation of the CloudFront cache. 
+that automates the build, deployment to an S3 bucket, and invalidation of the CloudFront cache using [Code Catalyst](https://docs.aws.amazon.com/codecatalyst/). 
 Here's a brief overview of the workflow:
 
 ## Build
