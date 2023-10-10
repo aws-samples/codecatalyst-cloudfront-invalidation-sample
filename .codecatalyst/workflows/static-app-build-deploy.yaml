@@ -1,4 +1,4 @@
-Name: static-app-build-deploy
+Name: InvalidateCloudfrontCacheSampleApp
 SchemaVersion: "1.0"
 
 Triggers:
@@ -20,7 +20,7 @@ Actions:
         - Run: npm run build
     Outputs:
       Artifacts:
-        - Name: build_artifacts
+        - Name: BuildArtifacts
           Files:
             - "build/**/*"
             
@@ -28,10 +28,13 @@ Actions:
   PublishToS3Bucket:
     Identifier: aws/s3-publish@v1.0.5
     Environment:
-      Name: testenvironment
+      # Environment created in CodeCatalyst > Environments 
+      Name: DevelopmentEnvironment
       Connections:
-        - Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
-          Name: Personal
+          # The "Amazon CodeCatalyst display name" of the connection created in Space settings > AWS Accounts
+        - Name: DevelopmentConnection
+          # The "IAM role name" 
+          Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
     Inputs:
       Sources:
         - WorkflowSource
@@ -41,7 +44,7 @@ Actions:
       Type: EC2
     Configuration:
       DestinationBucketName: gstarkma-react-bucket
-      SourcePath: /artifacts/PublishToS3Bucket/build_artifacts/build
+      SourcePath: /artifacts/PublishToS3Bucket/BuildArtifacts/build
     DependsOn:
       - BuildAndTest
       
