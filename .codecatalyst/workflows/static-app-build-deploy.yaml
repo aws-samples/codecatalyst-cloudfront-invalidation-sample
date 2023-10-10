@@ -1,15 +1,15 @@
 Name: static-app-build-deploy
 SchemaVersion: "1.0"
 
-# Optional - Set automatic triggers.
 Triggers:
   - Type: Push
     Branches:
       - main
 
-# Required - Define action configurations.
 Actions:
-  BuildAndTest:
+  
+  # Builds the source code into the build directory
+  Build:
     Identifier: aws/build@v1.0.0
     Inputs:
       Sources:
@@ -23,6 +23,8 @@ Actions:
         - Name: build_artifacts
           Files:
             - "build/**/*"
+            
+  # Publishes the build directory into the S3 bucket
   PublishToS3Bucket:
     Identifier: aws/s3-publish@v1.0.5
     Environment:
@@ -30,7 +32,6 @@ Actions:
       Connections:
         - Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
           Name: Personal
-      
     Inputs:
       Sources:
         - WorkflowSource
@@ -43,3 +44,22 @@ Actions:
       SourcePath: /artifacts/PublishToS3Bucket/build_artifacts/build
     DependsOn:
       - BuildAndTest
+      
+    # Invalidates the CloudFront cache after changes to the S3 bucket content. 
+    # It ensures that CloudFront delivers the updated content from S3 to users.
+  InvalidateAmazonCloudFrontCache:
+    # Identifies the action. Do not modify this value.
+    Identifier: codecatalyst-labs/invalidate-cloudfront-cache@v0.0.1
+
+    # Required; You can use an environment, AWS account connection, and role to access AWS resources.
+    Environment:
+      Name: testenvironment
+      Connections:
+        - Name: Personal
+          Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
+    Configuration:
+      # Required; type: string; description: Comma separated list of object paths to invalidate
+      ObjectPaths: "*"
+
+      # Required; type: string; description: Distribution ID of the CloudFront distribution
+      DistributionId:
