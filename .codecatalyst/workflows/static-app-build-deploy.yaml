@@ -38,6 +38,6 @@ Actions:
       Type: EC2
     Configuration:
       DestinationBucketName: 'gstarkma-react-bucket'
-      SourcePath: /
+      SourcePath: build/
     DependsOn:
       - BuildAndTest
