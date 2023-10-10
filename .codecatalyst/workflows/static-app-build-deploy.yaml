@@ -42,8 +42,6 @@ Actions:
       Artifacts:
         # Name of the Artifacts ... later to be used
         - BuildArtifacts
-    Compute:
-      Type: EC2
     Configuration:
       # Name of the S3 bucket created in an AWS Account
       DestinationBucketName: gstarkma-react-bucket
