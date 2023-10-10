@@ -23,7 +23,7 @@ Actions:
       Steps:
         - Run: npm install
         - Run: npm run build
-        - Run: ls
+        - Run: ls build
         - Run: pwd
   
   PublishToS3Bucket:
@@ -40,6 +40,6 @@ Actions:
       Type: EC2
     Configuration:
       DestinationBucketName: 'gstarkma-react-bucket'
-      SourcePath: /artifacts/PublishToS3Bucket/build/
+      SourcePath: build
     DependsOn:
       - BuildAndTest
