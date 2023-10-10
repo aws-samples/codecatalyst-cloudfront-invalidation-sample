@@ -1,4 +1,4 @@
-Name: InvalidateCloudfrontCacheSampleApp
+Name: InvalidateCloudfrontCacheSampleWorkflow
 SchemaVersion: "1.0"
 
 Triggers:
@@ -44,7 +44,7 @@ Actions:
         - BuildArtifacts
     Configuration:
       # Name of the S3 bucket created in an AWS Account
-      DestinationBucketName: gstarkma-react-bucket
+      DestinationBucketName: DestinationBucket 
       # This is where the S3 action will pull content from for uploading
       SourcePath: /artifacts/PublishToS3Bucket/BuildArtifacts/build
     DependsOn:
@@ -61,7 +61,7 @@ Actions:
           Role: CodeCatalystWorkflowDevelopmentRole
     Configuration:
       ObjectPaths: /*
-      DistributionId: E2EIXKXRR7GJR6
+      DistributionId: YDRPIEXXG7RR26
     DependsOn:
       - PublishToS3Bucket
       
