@@ -58,8 +58,8 @@ Actions:
         - Name: Personal
           Role: CodeCatalystWorkflowDevelopmentRole-GrantsSpace
     Configuration:
-      # Required; type: string; description: Comma separated list of object paths to invalidate
-      ObjectPaths: "*"
-
-      # Required; type: string; description: Distribution ID of the CloudFront distribution
-      DistributionId:
+      ObjectPaths: /*
+      DistributionId: E2EIXKXRR7GJR6
+    DependsOn:
+      - PublishToS3Bucket
+      
