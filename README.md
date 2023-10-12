@@ -11,14 +11,6 @@ The built application is then published to the gstarkma-react-bucket S3 bucket u
 
 ## Invalidate CloudFront Cache
 After deploying to the S3 bucket, the CloudFront cache is invalidated to ensure that users access the updated content from the bucket. This is achieved using the codecatalyst-labs/invalidate-cloudfront-cache@v0.0.1 action.
-## My Project
-
-TODO: Fill this README out!
-
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
 
 ## Security
 
