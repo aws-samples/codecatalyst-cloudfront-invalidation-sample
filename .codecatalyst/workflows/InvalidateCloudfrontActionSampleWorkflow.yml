@@ -44,7 +44,7 @@ Actions:
         - BuildArtifacts
     Configuration:
       # Name of the S3 bucket created in an AWS Account
-      DestinationBucketName: gstarkma-react-bucket 
+      DestinationBucketName: DestinationBucket 
       # This is where the S3 action will pull content from for uploading
       SourcePath: /artifacts/PublishToS3Bucket/BuildArtifacts/build
     DependsOn:
@@ -52,16 +52,16 @@ Actions:
       
   # Invalidates the CloudFront cache after changes to the S3 bucket content. 
   # It ensures that CloudFront delivers the updated content from S3 to users.
-  #InvalidateAmazonCloudFrontCache:
-  #Identifier: codecatalyst-labs/invalidate-cloudfront-cache@v0.0.1
-  #Environment:
-  #Name: DevelopmentEnvironment
-  #    Connections:
-  #      - Name: DevelopmentConnection
-  #        Role: CodeCatalystWorkflowDevelopmentRole
-  #  Configuration:
-  #    ObjectPaths: /*
-  #    DistributionId: YDRPIEXXG7RR26
-  #  DependsOn:
-  #    - PublishToS3Bucket
+  InvalidateAmazonCloudFrontCache:
+    Identifier: codecatalyst-labs/invalidate-cloudfront-cache@v0.0.1
+    Environment:
+      Name: DevelopmentEnvironment
+      Connections:
+        - Name: DevelopmentConnection
+          Role: CodeCatalystWorkflowDevelopmentRole
+    Configuration:
+      ObjectPaths: /*
+      DistributionId: YDRPIEXXG7RR26
+    DependsOn:
+      - PublishToS3Bucket
       
