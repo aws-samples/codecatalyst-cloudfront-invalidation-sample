@@ -4,7 +4,7 @@ This repository showcases the application of the `InvalidateAmazonCloudFrontCach
 
 While designed for integration within an Amazon CodeCatalyst workspace, full 
 utilization requires a setup based on an accompanying tutorial or the blog post
-linked with this repository. For more information, refer to the **Resources** section.
+linked with this repository. For more information, refer to the [Resources](resources) section.
 
 At its heart, this repository centers on a `create-react-app` project, 
 seamlessly integrated with a CI/CD workflow. This workflow, detailed in 
