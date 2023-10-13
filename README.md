@@ -8,7 +8,7 @@ linked with this repository. For more information, refer to the **Resources** se
 
 At its heart, this repository centers on a `create-react-app` project, 
 seamlessly integrated with a CI/CD workflow. This workflow, detailed in 
-`.codecatalyst/workflows/InvalidateCloudfrontCacheSampleWorkflow.yml`, streamlines the process of building the app, deploying it to an S3 bucket, and ensuring the CloudFront cache is invalidated. The beauty lies in the simplicity: by just configuring the action and its parameters within `.codecatalyst/workflows/InvalidateCloudfrontCacheSampleWorkflow.yml`, the entire automation process is set in motion. Here's a closer look at the primary stages of the workflow:
+[InvalidateCloudfrontActionSampleWorkflow](.codecatalyst/workflows/InvalidateCloudfrontActionSampleWorkflow.yml), streamlines the process of building the app, deploying it to an S3 bucket, and ensuring the CloudFront cache is invalidated. The beauty lies in the simplicity: by just configuring the action and its parameters within [InvalidateCloudfrontActionSampleWorkflow](.codecatalyst/workflows/InvalidateCloudfrontActionSampleWorkflow.yml), the entire automation process is set in motion. Here's a closer look at the primary stages of the workflow:
 
 ## Build
 By harnessing the `aws/build@v1.0.0` action, the source code is processed using 
