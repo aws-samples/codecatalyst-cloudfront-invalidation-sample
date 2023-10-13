@@ -1,6 +1,7 @@
 Name: InvalidateCloudfrontCacheSampleWorkflow
 SchemaVersion: "1.0"
 
+# This workflow is set to trigger when a push to the main branch is made
 Triggers:
   - Type: Push
     Branches:
@@ -15,6 +16,7 @@ Actions:
       Sources:
         - WorkflowSource
     Configuration:
+      # Build steps executed for the sample create-react-app.
       Steps:
         - Run: npm install
         - Run: npm run build
@@ -22,6 +24,7 @@ Actions:
       Artifacts:
         # Name of the Artifacts to be used in SourcePath 
         - Name: BuildArtifacts
+          # The location of built content 
           Files:
             - "build/**/*"
             
@@ -32,9 +35,9 @@ Actions:
       # Environment created in CodeCatalyst > Environments 
       Name: DevelopmentEnvironment
       Connections:
-          # The "Amazon CodeCatalyst display name" of the connection created in Space settings > AWS Accounts
+          # "Amazon CodeCatalyst display name" of the connection created in Space settings > AWS Accounts
         - Name: DevelopmentConnection
-          # The "IAM role name" set in Space settings > AWS Accounts > Display Name
+          # "IAM role name" set in Space settings > AWS Accounts > Display Name
           Role: CodeCatalystWorkflowDevelopmentRole
     Inputs:
       Sources:
@@ -55,12 +58,17 @@ Actions:
   InvalidateAmazonCloudFrontCache:
     Identifier: codecatalyst-labs/invalidate-cloudfront-cache@v0.0.1
     Environment:
+      # Environment created in CodeCatalyst > Environments 
       Name: DevelopmentEnvironment
       Connections:
+          # "Amazon CodeCatalyst display name" of the connection created in Space settings > AWS Accounts
         - Name: DevelopmentConnection
+          # "IAM role name" set in Space settings > AWS Accounts > Display Name
           Role: CodeCatalystWorkflowDevelopmentRole
     Configuration:
+      # Comma-delimited string of file paths that you want to invalidate.
       ObjectPaths: /*
+      # Identifier of the CloudFront Distribution you wish to invalidate. 
       DistributionId: YDRPIEXXG7RR26
     DependsOn:
       - PublishToS3Bucket
