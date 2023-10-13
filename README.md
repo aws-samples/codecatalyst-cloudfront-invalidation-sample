@@ -1,6 +1,6 @@
 # CI/CD Deployment with CodeCatalyst's Cloudfront Cache Invalidation
 
-This repository showcases the application of the `InvalidateAmazonCloudFrontCache` action from CodeCatalyst, as defined in [a relative link](.codecatalyst/workflows/InvalidateCloudfrontCacheSampleWorkflow.yml).
+This repository showcases the application of the `InvalidateAmazonCloudFrontCache` action from CodeCatalyst, as defined in [InvalidateCloudfrontActionSampleWorkflow](.codecatalyst/workflows/InvalidateCloudfrontCacheSampleWorkflow.yml).
 
 While designed for integration within an Amazon CodeCatalyst workspace, full 
 utilization requires a setup based on an accompanying tutorial or the blog post
