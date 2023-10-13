@@ -18,12 +18,12 @@ found in the `build/**/*` directories. The `Build` action configuration can be
 left as is. 
 
 ## Publish to S3
-Upon completion of the build process, the output stored in the `build/**/*` directories is transferred to the specified `DestinationBucket` S3 bucket using the `aws/s3-publish@v1.0.5 action`. It's imperative to update `DevelopmentEnvironment`, `DevelopmentConnection`, `CodeCatalystWorkflowDevelopmentRole`, and `DestinationBucket` to align with your configurations in CodeCatalyst and your AWS account. For comprehensive guidance, refer to the **Resources** section.
+Upon completion of the build process, the output stored in the `build/**/*` directories is transferred to the specified `DestinationBucket` S3 bucket using the `aws/s3-publish@v1.0.5 action`. It's imperative to update `DevelopmentEnvironment`, `DevelopmentConnection`, `CodeCatalystWorkflowDevelopmentRole`, and `DestinationBucket` to align with your configurations in CodeCatalyst and your AWS account. For comprehensive guidance, refer to the [Resources](#resources) section.
 
 ## Invalidate CloudFront Cache
 Before proceeding, ensure that the S3 bucket, to which you've deployed, is 
 configured as a CloudFront origin domain. For guidance on this setup, refer to 
-the **Resources** section.
+the [Resources](#resources) section.
 
 Once your S3 bucket is appropriately configured, it's essential to invalidate 
 the Cloudfront cache post-deployment. This ensures end-users consistently 
