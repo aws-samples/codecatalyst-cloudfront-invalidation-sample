@@ -30,9 +30,9 @@ the Cloudfront cache post-deployment. This ensures end-users consistently
 access the most recent content. The `codecatalyst-labs/invalidate-cloudfront-cache@v0.0.1` action efficiently manages this operation, assuming your S3 bucket functions as an origin in your Cloudfront configuration.
 
 ## Resources
-[Setting up CodeCatalyst](https://docs.aws.amazon.com/codecatalyst/latest/userguide/setting-up-topnode.html)
-[Adding the "Amazon S3 publish" action](https://docs.aws.amazon.com/codecatalyst/latest/userguide/s3-pub-action.html)
-[Getting started with a simple CloudFront distribution](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.SimpleDistribution.html)
+[Setting up CodeCatalyst](https://docs.aws.amazon.com/codecatalyst/latest/userguide/setting-up-topnode.html)  
+[Adding the "Amazon S3 publish" action](https://docs.aws.amazon.com/codecatalyst/latest/userguide/s3-pub-action.html)  
+[Getting started with a simple CloudFront distribution](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.SimpleDistribution.html)  
 
 ## Security
 For security-related details, kindly refer to [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications).
