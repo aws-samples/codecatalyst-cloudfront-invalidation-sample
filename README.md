@@ -27,7 +27,7 @@ the [Resources](#resources) section.
 
 Once your S3 bucket is appropriately configured, it's essential to invalidate 
 the Cloudfront cache post-deployment. This ensures end-users consistently 
-access the most recent content. The `codecatalyst-labs/invalidate-cloudfront-cache@v0.0.1` action efficiently manages this operation, assuming your S3 bucket functions as an origin in your Cloudfront configuration.
+access the most recent content. The `codecatalyst-labs/invalidate-cloudfront-cache@v1.0.0` action efficiently manages this operation, assuming your S3 bucket functions as an origin in your Cloudfront configuration.
 
 ## Resources
 [Setting up CodeCatalyst](https://docs.aws.amazon.com/codecatalyst/latest/userguide/setting-up-topnode.html)  
